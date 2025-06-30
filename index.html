@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduVantage Academy | Home</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* New Color Scheme */
+        :root {
+            --primary: #8e44ad;
+            --secondary: #f39c12;
+            --accent: #2ecc71;
+            --neutral-light: #fdfaf6;
+            --neutral-dark: #2c3e50;
+            --neutral-muted: #bdc3c7;
+            --transition: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.15);
+            --glass: rgba(255, 255, 255, 0.9);
+        }
+
+
+        /* Reveal on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Enhanced Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.1rem 2rem;
+        }
+
+        .logo {
+            font-family: 'Poppins';
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all var(--transition);
+        }
+
+        .logo-icon {
+            background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 0.5rem 1.5rem;
+            margin: 0 0.5rem;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-links a {
+            position: relative;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--neutral-dark);
+            transition: color var(--transition);
+            padding: 0.5rem 0.6rem;
+            border-radius: 20px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .nav-links a.active {
+            color: white;
+            background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .cta-group {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .social-icons a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--neutral-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            color: var(--neutral-dark);
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-enroll {
+            background: linear-gradient(135deg, var(--secondary) 0%, #34d399 100%);
+            color: #fff;
+            padding: 0.7rem 1.8rem;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: all var(--transition);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-enroll:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        /* Hero slider */
+        .hero {
+            position: relative;
+            height: 90vh;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            height: 100%;
+            transition: transform 1s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .slide-caption {
+            position: absolute;
+            top: 55%;
+            left: 10%;
+            transform: translateY(-50%);
+            text-align: left;
+            color: #fff;
+            max-width: 600px;
+            width: 90%;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .slide-caption h1 {
+            font-family: 'Poppins';
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            animation: slideInDown 1s ease-out;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .slide-caption p {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            animation: slideInUp 1s ease-out;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            font-weight: 400;
+        }
+
+        .slide-caption .btn {
+            background: var(--accent);
+            color: #fff;
+            padding: 0.9rem 2.5rem;
+            border-radius: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            animation: fadeIn 1s ease-out;
+            display: inline-block;
+            transition: all var(--transition);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .slide-caption .btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translate(-20%, -80%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0, -50%);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translate(-20%, -20%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0, -10%);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero-controls {
+            position: absolute;
+            bottom: 0.2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .hero-controls button {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(109, 108, 108, 0.6);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .hero-controls button.active,
+        .hero-controls button:hover {
+            background: var(--accent);
+            transform: scale(1.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 1.5rem;
+            max-width: 1280px;
+            margin: auto;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-family: 'Poppins';
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: var(--neutral-dark);
+            line-height: 1.8;
+        }
+
+        /* About snapshot */
+        .snapshot {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card-flip {
+            perspective: 1000px;
+            height: 300px;
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform var(--transition);
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .card-flip:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front,
+        .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: box-shadow var(--transition);
+        }
+
+        .card-flip:hover .card-front,
+        .card-flip:hover .card-back {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-front {
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .card-front h3 {
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+            width: 90%;
+            transition: all var(--transition);
+            font-weight: 600;
+        }
+
+        .card-flip:hover .card-front h3 {
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .card-back {
+            background: #fff;
+            transform: rotateY(180deg);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .card-back i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.2rem;
+        }
+
+        .card-back h4 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .card-back p {
+            font-size: 1rem;
+            color: var(--neutral-dark);
+            line-height: 1.7;
+        }
+
+        /* Why Us */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+            text-align: center;
+        }
+
+        .feature {
+            padding: 2.5rem 2rem;
+            background: #fff;
+            border-radius: 20px;
+            transition: all var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            /* Centering styles */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature i {
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            transition: transform var(--transition);
+            background: rgba(37, 99, 235, 0.1);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature:hover i {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
+            color: white;
+        }
+
+        .feature .count {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 0.5rem 0;
+            display: block;
+        }
+
+        .feature h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .feature p {
+            font-size: 0.95rem;
+            color: var(--neutral-dark);
+            line-height: 1.7;
+        }
+
+        /* Partners */
+        .partners-container {
+            background: #fff;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow);
+            margin-top: 3rem;
+        }
+
+        .partners-title {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--neutral-dark);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .partners {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .partner-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .partners img {
+            width: 140px;
+            height: auto;
+            opacity: 0.8;
+            transition: all var(--transition);
+            filter: grayscale(1);
+        }
+
+        .partners img:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            filter: grayscale(0);
+        }
+
+        .partner-name {
+            font-size: 0.9rem;
+            color: var(--neutral-dark);
+            font-weight: 500;
+        }
+
+        /* Testimonials */
+        .testimonials .test-slider {
+            display: flex;
+            overflow: hidden;
+            scroll-behavior: smooth;
+            padding: 1rem 0;
+        }
+
+        .test-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 0 1.5rem;
+            flex: 0 0 380px;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .test-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .test-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            font-family: Georgia;
+            color: var(--secondary);
+            opacity: 0.2;
+        }
+
+        .test-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            object-fit: cover;
+            border: 3px solid var(--secondary);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .test-name {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .test-role {
+            font-size: 0.95rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .test-quote {
+            font-style: normal;
+            font-size: 1rem;
+            color: var(--neutral-dark);
+            line-height: 1.8;
+        }
+
+        .test-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+
+        .test-controls button {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .test-controls button:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, #1e40af 100%);
+            color: #fff;
+            padding: 5rem 1.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+        }
+
+        footer::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            right: -80px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        #social-icon-a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            color: var(--neutral-dark);
+        }
+
+        #social-icon-a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2.5rem;
+            max-width: 1280px;
+            margin: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 1.5rem;
+            font-family: 'Poppins';
+            font-weight: 700;
+            font-size: 1.4rem;
+            position: relative;
+            display: inline-block;
+            color: white;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .footer-col p,
+        .footer-col a,
+        .footer-col li {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 0.8rem;
+            transition: all var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .footer-col ul li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul li i {
+            color: var(--secondary);
+            min-width: 20px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 1.8rem;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer-bottom a {
+            color: var(--accent);
+            font-weight: 600;
+            transition: all var(--transition);
+        }
+
+        .footer-bottom a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 55px;
+            height: 55px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            border: 2px solid white;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--accent);
+            transform: translateY(-5px) rotate(360deg);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            transition: left var(--transition);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu .close-menu {
+            align-self: flex-end;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--neutral-dark);
+            transition: color var(--transition);
+        }
+
+        .mobile-menu .close-menu:hover {
+            color: var(--accent);
+        }
+
+        .mobile-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-links a {
+            font-weight: 600;
+            color: var(--primary);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+            transition: color var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .mobile-links a:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu .btn-enroll {
+            margin-top: 2rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .slide-caption h1 {
+                font-size: 2.8rem;
+            }
+
+            .slide-caption {
+                left: 5%;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .cta-group .btn-enroll {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .slide-caption h1 {
+                font-size: 2.2rem;
+            }
+
+            .slide-caption p {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .feature {
+                padding: 1.8rem;
+            }
+
+            .test-card {
+                flex: 0 0 300px;
+            }
+
+            .partners-container {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                height: 85vh;
+            }
+
+            .slide-caption h1 {
+                font-size: 1.9rem;
+            }
+
+            .slide-caption p {
+                font-size: 1rem;
+            }
+
+            .slide-caption .btn {
+                padding: 0.8rem 2rem;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .partners img {
+                width: 110px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-container reveal">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <span>EduVantage</span>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="classes.html">Classes</a>
+                <a href="guidance.html">Guidance</a>
+                <a href="announcement.html">Announcements</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="cta-group">
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+                <button class="btn-enroll">Enroll Now</button>
+                <div class="hamburger"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="close-menu"><i class="fas fa-times"></i></div>
+        <nav class="mobile-links">
+            <a href="#home">Home</a>
+            <a href="#programs">Programs</a>
+            <a href="#faculty">Faculty</a>
+            <a href="#resources">Resources</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="btn-enroll">Enroll Now</button>
+    </div>
+
+    <!-- Hero Slider -->
+    <section class="hero" id="home">
+        <div class="slides" id="slides">
+            <div class="slide">
+                <img loading="lazy"
+                    src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
+                    alt="Students studying together">
+                <div class="slide-overlay"></div>
+                <div class="slide-caption">
+                    <h1>Transform Your Future Through Education</h1>
+                    <p>World-class learning experiences with personalized guidance and industry-leading instructors</p>
+                    <a href="#" class="btn">Explore Programs</a>
+                </div>
+            </div>
+            <div class="slide">
+                <img loading="lazy"
+                    src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
+                    alt="Group study session">
+                <div class="slide-overlay"></div>
+                <div class="slide-caption">
+                    <h1>Collaborative Learning Environment</h1>
+                    <p>Join a community of passionate learners and industry experts</p>
+                    <a href="#" class="btn">Join Our Community</a>
+                </div>
+            </div>
+            <div class="slide">
+                <img loading="lazy"
+                    src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
+                    alt="Online learning">
+                <div class="slide-overlay"></div>
+                <div class="slide-caption">
+                    <h1>Flexible Online & On-Campus Programs</h1>
+                    <p>Access world-class education from anywhere with our hybrid learning model</p>
+                    <a href="#" class="btn">View Learning Options</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-controls" id="hero-controls"></div>
+    </section>
+
+    <!-- About Snapshot -->
+    <section class="reveal" id="about">
+        <h2>Our Educational Approach</h2>
+        <p class="section-subtitle">At EduVantage, we combine innovative teaching methods with industry expertise to
+            create transformative learning experiences that prepare students for real-world challenges.</p>
+
+        <div class="snapshot">
+            <div class="card-flip">
+                <div class="card-inner">
+                    <div class="card-front"
+                        style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                        <h3>Student-Centered Learning</h3>
+                    </div>
+                    <div class="card-back">
+                        <i class="fas fa-user-graduate"></i>
+                        <h4>Personalized Education</h4>
+                        <p>Our adaptive learning platform tailors content to each student's pace and learning style,
+                            with regular assessments to track progress and identify areas for improvement.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-flip">
+                <div class="card-inner">
+                    <div class="card-front"
+                        style="background-image: url('https://images.unsplash.com/photo-1581726690015-c9861fa5057f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                        <h3>Industry Partnerships</h3>
+                    </div>
+                    <div class="card-back">
+                        <i class="fas fa-handshake"></i>
+                        <h4>Real-World Preparation</h4>
+                        <p>We collaborate with leading companies to develop curriculum that meets current industry
+                            demands, providing students with practical skills and networking opportunities.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-flip">
+                <div class="card-inner">
+                    <div class="card-front"
+                        style="background-image: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                        <h3>Career Advancement</h3>
+                    </div>
+                    <div class="card-back">
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Professional Growth</h4>
+                        <p>Our career services team works with students from day one to develop professional skills,
+                            build portfolios, and connect with potential employers through our extensive network.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="why-us">
+        <h2>Why Choose EduVantage</h2>
+        <p class="section-subtitle">With a proven track record of student success and industry recognition, we provide
+            an educational experience that delivers measurable results and transforms careers.</p>
+
+        <div class="features">
+            <div class="feature reveal">
+                <i class="fas fa-user-tie"></i>
+                <span class="count" data-target="120">0</span>
+                <h3>Expert Faculty</h3>
+                <p>Industry professionals with real-world experience and advanced degrees</p>
+            </div>
+            <div class="feature reveal">
+                <i class="fas fa-book-open"></i>
+                <span class="count" data-target="85">0</span>
+                <h3>Programs Offered</h3>
+                <p>Comprehensive courses across technology, business, and creative fields</p>
+            </div>
+            <div class="feature reveal">
+                <i class="fas fa-headset"></i>
+                <span class="count" data-target="24">0</span>
+                <h3>Support Availability</h3>
+                <p>Round-the-clock academic and technical assistance for all students</p>
+            </div>
+            <div class="feature reveal">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="count" data-target="96">0</span>
+                <h3>Graduate Success</h3>
+                <p>Employment rate within 6 months of program completion</p>
+            </div>
+        </div>
+
+        <div class="partners-container reveal">
+            <div class="partners-title">Trusted by Industry Leaders</div>
+            <div class="partners">
+                <div class="partner-item">
+                    <img loading="lazy" src="https://i.ibb.co/7rFcTtM/logo1.png" alt="TechLogix">
+                    <div class="partner-name">TechLogix</div>
+                </div>
+                <div class="partner-item">
+                    <img loading="lazy" src="https://i.ibb.co/Gv2Xm3Q/logo2.png" alt="InnoVate">
+                    <div class="partner-name">InnoVate</div>
+                </div>
+                <div class="partner-item">
+                    <img loading="lazy" src="https://i.ibb.co/7kzM8s8/logo3.png" alt="DataDynamo">
+                    <div class="partner-name">DataDynamo</div>
+                </div>
+                <div class="partner-item">
+                    <img loading="lazy" src="https://i.ibb.co/JFwG2YQ/logo4.png" alt="CloudCore">
+                    <div class="partner-name">CloudCore</div>
+                </div>
+                <div class="partner-item">
+                    <img loading="lazy" src="https://i.ibb.co/7rFcTtM/logo1.png" alt="PixelForge">
+                    <div class="partner-name">PixelForge</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials reveal" id="testimonials">
+        <h2>Student Success Stories</h2>
+        <p class="section-subtitle">Hear from our graduates about how EduVantage transformed their careers and helped
+            them achieve their professional goals.</p>
+
+        <div class="test-slider" id="test-slider">
+            <div class="test-card">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
+                    alt="Alice" class="test-avatar">
+                <div class="test-name">Sarah Johnson</div>
+                <div class="test-role">Data Science Graduate</div>
+                <div class="test-quote">"The Data Science program completely transformed my career trajectory. The
+                    hands-on projects and industry mentorship prepared me for real-world challenges. Within three months
+                    of graduating, I secured a position as a Data Analyst at a leading tech firm with a 40% salary
+                    increase."</div>
+            </div>
+            <div class="test-card">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
+                    alt="Bob" class="test-avatar">
+                <div class="test-name">Michael Chen</div>
+                <div class="test-role">UX Design Graduate</div>
+                <div class="test-quote">"As a career-changer from marketing, the UX Design bootcamp gave me the
+                    practical skills and portfolio I needed to break into the tech industry. The career services team
+                    connected me with hiring managers at top companies, and I received multiple job offers before
+                    graduation."</div>
+            </div>
+            <div class="test-card">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
+                    alt="Clara" class="test-avatar">
+                <div class="test-name">Priya Patel</div>
+                <div class="test-role">Full Stack Developer</div>
+                <div class="test-quote">"The Full Stack Development program exceeded my expectations. The instructors
+                    were industry experts who provided personalized feedback. The capstone project became the
+                    centerpiece of my portfolio and directly led to my current role at a fintech startup."</div>
+            </div>
+            <div class="test-card">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80"
+                    alt="David" class="test-avatar">
+                <div class="test-name">David Rodriguez</div>
+                <div class="test-role">AI Engineering Graduate</div>
+                <div class="test-quote">"The AI Engineering program provided me with cutting-edge skills that were
+                    immediately applicable in my work. The industry projects allowed me to build a specialized portfolio
+                    that caught the attention of recruiters at leading AI research labs."</div>
+            </div>
+        </div>
+        <div class="test-controls">
+            <button id="prev-test"><i class="fas fa-chevron-left"></i></button>
+            <button id="next-test"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>EduVantage Academy</h4>
+                <p>Empowering learners with cutting-edge education and personalized support to help them achieve
+                    academic excellence and unlock their full potential in the digital age.</p>
+                <div class="social-icons">
+                    <a href="#" id="social-icon-a"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" id="social-icon-a"><i class="fab fa-twitter"></i></a>
+                    <a href="#" id="social-icon-a"><i class="fab fa-instagram"></i></a>
+                    <a href="#" id="social-icon-a"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <!-- <li><a href="#"><i class="fas fa-chevron-right"></i> Home </a></li> -->
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Classes</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Counselling</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Announcements</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Learning Hub</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Career Services</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Student Success Stories</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Industry Partnerships</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Scholarship Programs</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive, San Francisco, CA</li>
+                    <li><i class="fas fa-phone"></i> (415) 555-0123</li>
+                    <li><i class="fas fa-envelope"></i> info@eduvantage.edu</li>
+                    <li><i class="fas fa-clock"></i> Mon-Fri: 8am-8pm, Sat: 9am-5pm</li>
+                    <li><i class="fas fa-globe"></i> www.eduvantage.edu</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 EduVantage Academy • <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a> • <a
+                href="#">Accessibility</a> • Accredited by the Higher Education Commission •
+            Powered by <a href="https://friendscampus.com" target="_blank">FriendsCampus</a>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('active'));
+        }, { threshold: 0.2 });
+        reveals.forEach(r => observer.observe(r));
+
+        // Hero slider
+        const slides = document.getElementById('slides');
+        const controls = document.getElementById('hero-controls');
+        let currentIndex = 0;
+        const total = slides.children.length;
+        let autoSlideInterval;
+
+        function renderControls() {
+            controls.innerHTML = '';
+            for (let i = 0; i < total; i++) {
+                const btn = document.createElement('button');
+                if (i === 0) btn.classList.add('active');
+                btn.addEventListener('click', () => goToSlide(i));
+                controls.appendChild(btn);
+            }
+        }
+
+        function goToSlide(i) {
+            slides.style.transform = `translateX(-${i * 100}%)`;
+            controls.querySelectorAll('button').forEach((b, idx) => b.classList.toggle('active', idx === i));
+            currentIndex = i;
+        }
+
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(() => {
+                goToSlide((currentIndex + 1) % total);
+            }, 5000);
+        }
+
+        renderControls();
+        startAutoSlide();
+
+        // Pause auto slide when hovering over slider
+        slides.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+        slides.addEventListener('mouseleave', startAutoSlide);
+
+        // Counters animation
+        const counters = document.querySelectorAll('[data-target]');
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = Math.ceil(target / 200);
+                if (count < target) {
+                    counter.innerText = count + inc;
+                    setTimeout(updateCount, 15);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting) updateCount();
+            }, { threshold: 0.5 }).observe(counter);
+        });
+
+        // Testimonial controls
+        const testSlider = document.getElementById('test-slider');
+        document.getElementById('prev-test').addEventListener('click', () => {
+            testSlider.scrollBy({ left: -400, behavior: 'smooth' });
+        });
+
+        document.getElementById('next-test').addEventListener('click', () => {
+            testSlider.scrollBy({ left: 400, behavior: 'smooth' });
+        });
+
+        // Auto scroll testimonials
+        let testScrollInterval = setInterval(() => {
+            testSlider.scrollBy({ left: 400, behavior: 'smooth' });
+            if (testSlider.scrollLeft >= testSlider.scrollWidth - testSlider.clientWidth - 400) {
+                setTimeout(() => {
+                    testSlider.scrollTo({ left: 0, behavior: 'smooth' });
+                }, 3000);
+            }
+        }, 5000);
+
+        testSlider.addEventListener('mouseenter', () => clearInterval(testScrollInterval));
+        testSlider.addEventListener('mouseleave', () => {
+            testScrollInterval = setInterval(() => {
+                testSlider.scrollBy({ left: 400, behavior: 'smooth' });
+                if (testSlider.scrollLeft >= testSlider.scrollWidth - testSlider.clientWidth - 400) {
+                    setTimeout(() => {
+                        testSlider.scrollTo({ left: 0, behavior: 'smooth' });
+                    }, 3000);
+                }
+            }, 5000);
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const closeMenu = document.querySelector('.close-menu');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    mobileMenu.classList.remove('active');
+
+                    // Update active nav link
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Set active nav link based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

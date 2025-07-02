@@ -10,6 +10,13 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Prevent horizontal scrolling */
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         /* Reset & base */
         * {
             margin: 0;
@@ -17,15 +24,10 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Open Sans', sans-serif;
             color: #333;
             line-height: 1.6;
-            overflow-x: hidden;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
 
@@ -51,7 +53,6 @@
             --shadow-hover: 0 12px 30px rgba(0, 0, 0, 0.15);
             --glass: rgba(255, 255, 255, 0.9);
         }
-
 
         /* Reveal on scroll */
         .reveal {
@@ -79,7 +80,7 @@
 
         .nav-container {
             max-width: 1280px;
-            margin: auto;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -208,11 +209,13 @@
             position: relative;
             height: 90vh;
             overflow: hidden;
+            width: 100%;
         }
 
         .slides {
             display: flex;
             height: 100%;
+            width: 100%;
             transition: transform 1s ease;
         }
 
@@ -350,7 +353,8 @@
         section {
             padding: 6rem 1.5rem;
             max-width: 1280px;
-            margin: auto;
+            margin: 0 auto;
+            width: 100%;
         }
 
         section h2 {
@@ -389,11 +393,13 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2.5rem;
+            width: 100%;
         }
 
         .card-flip {
             perspective: 1000px;
             height: 300px;
+            width: 100%;
         }
 
         .card-inner {
@@ -486,6 +492,7 @@
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 2.5rem;
             text-align: center;
+            width: 100%;
         }
 
         .feature {
@@ -497,7 +504,6 @@
             transform: translateY(20px);
             box-shadow: var(--shadow);
             border: 1px solid rgba(0, 0, 0, 0.05);
-            /* Centering styles */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -561,6 +567,7 @@
             padding: 3rem;
             box-shadow: var(--shadow);
             margin-top: 3rem;
+            width: 100%;
         }
 
         .partners-title {
@@ -577,6 +584,7 @@
             gap: 3rem;
             justify-content: center;
             align-items: center;
+            width: 100%;
         }
 
         .partner-item {
@@ -607,11 +615,22 @@
         }
 
         /* Testimonials */
-        .testimonials .test-slider {
-            display: flex;
+        .testimonials {
             overflow: hidden;
+            width: 100%;
+        }
+
+        .test-slider {
+            display: flex;
+            overflow-x: auto;
             scroll-behavior: smooth;
             padding: 1rem 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .test-slider::-webkit-scrollbar {
+            display: none;
         }
 
         .test-card {
@@ -708,6 +727,7 @@
             padding: 5rem 1.5rem 2rem;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         footer::before {
@@ -756,9 +776,10 @@
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 2.5rem;
             max-width: 1280px;
-            margin: auto;
+            margin: 0 auto;
             position: relative;
             z-index: 1;
+            width: 100%;
         }
 
         .footer-col h4 {
@@ -877,6 +898,7 @@
             padding: 2rem 1.5rem;
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
         }
 
         .mobile-menu.active {
@@ -919,6 +941,36 @@
             margin-top: 2rem;
             text-align: center;
             width: 100%;
+        }
+
+        /* Mobile Social Icons */
+        .mobile-social-icons {
+            display: none;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .mobile-social-icons a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--neutral-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            color: var(--neutral-dark);
+            font-size: 1.2rem;
+        }
+
+        .mobile-social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
 
         /* Responsive */
@@ -974,15 +1026,38 @@
             .partners-container {
                 padding: 2rem 1rem;
             }
+
+            .mobile-menu {
+                width: 300px;
+            }
+
+            .mobile-social-icons {
+                display: flex;
+            }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
             .logo {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
             }
 
             .hero {
                 height: 85vh;
+            }
+
+            .slide-caption {
+                left: 5%;
+                width: 90%;
+                padding: 1.5rem;
             }
 
             .slide-caption h1 {
@@ -995,6 +1070,7 @@
 
             .slide-caption .btn {
                 padding: 0.8rem 2rem;
+                font-size: 0.9rem;
             }
 
             .features {
@@ -1007,6 +1083,102 @@
 
             .footer-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .test-card {
+                flex: 0 0 280px;
+                padding: 1.8rem;
+                margin: 0 1rem;
+            }
+
+            .test-avatar {
+                width: 70px;
+                height: 70px;
+            }
+
+            .test-name {
+                font-size: 1.1rem;
+            }
+
+            .test-role {
+                font-size: 0.9rem;
+            }
+
+            .test-quote {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .slide-caption h1 {
+                font-size: 1.7rem;
+            }
+
+            .slide-caption p {
+                font-size: 0.95rem;
+            }
+
+            .hero-controls button {
+                width: 12px;
+                height: 12px;
+            }
+
+            .test-controls button {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .card-flip {
+                height: 280px;
+            }
+
+            .card-back {
+                padding: 1.5rem;
+            }
+
+            .card-back h4 {
+                font-size: 1.3rem;
+            }
+
+            .card-back p {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+
+            .slide-caption h1 {
+                font-size: 1.5rem;
+            }
+
+            .slide-caption .btn {
+                padding: 0.7rem 1.8rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .mobile-menu {
+                width: 280px;
             }
         }
     </style>
@@ -1047,14 +1219,20 @@
     <div class="mobile-menu">
         <div class="close-menu"><i class="fas fa-times"></i></div>
         <nav class="mobile-links">
-            <a href="#home">Home</a>
-            <a href="#programs">Programs</a>
-            <a href="#faculty">Faculty</a>
-            <a href="#resources">Resources</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+            <a href="index.html" class="active">Home</a>
+            <a href="classes.html">Classes</a>
+            <a href="guidance.html">Guidance</a>
+            <a href="announcement.html">Announcements</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
         </nav>
         <button class="btn-enroll">Enroll Now</button>
+        <div class="mobile-social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
     </div>
 
     <!-- Hero Slider -->
@@ -1278,7 +1456,6 @@
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <ul>
-                    <!-- <li><a href="#"><i class="fas fa-chevron-right"></i> Home </a></li> -->
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Classes</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Counselling</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Announcements</a></li>
@@ -1421,10 +1598,20 @@
 
         hamburger.addEventListener('click', () => {
             mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
 
         closeMenu.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.mobile-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
         });
 
         // Scroll to top button
@@ -1458,9 +1645,10 @@
 
                     // Close mobile menu if open
                     mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
 
                     // Update active nav link
-                    document.querySelectorAll('.nav-links a').forEach(link => {
+                    document.querySelectorAll('.nav-links a, .mobile-links a').forEach(link => {
                         link.classList.remove('active');
                     });
                     this.classList.add('active');
@@ -1481,12 +1669,26 @@
                 }
             });
 
-            document.querySelectorAll('.nav-links a').forEach(link => {
+            document.querySelectorAll('.nav-links a, .mobile-links a').forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
+                if (link.getAttribute('href') === `#${current}` ||
+                    (current === '' && link.getAttribute('href') === 'index.html')) {
                     link.classList.add('active');
                 }
             });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && e.target !== hamburger) {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Prevent horizontal scrolling
+        window.addEventListener('load', function () {
+            document.body.style.overflowX = 'hidden';
         });
     </script>
 </body>

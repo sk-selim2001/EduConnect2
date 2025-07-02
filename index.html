@@ -202,6 +202,9 @@
             cursor: pointer;
             color: var(--primary);
             font-size: 1.5rem;
+            background: none;
+            border: none;
+            padding: 0.5rem;
         }
 
         /* Hero slider */
@@ -893,7 +896,7 @@
             height: 100vh;
             background: white;
             z-index: 2000;
-            transition: left var(--transition);
+            transition: left 0.3s ease;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             padding: 2rem 1.5rem;
             display: flex;
@@ -912,6 +915,8 @@
             cursor: pointer;
             color: var(--neutral-dark);
             transition: color var(--transition);
+            background: none;
+            border: none;
         }
 
         .mobile-menu .close-menu:hover {
@@ -945,7 +950,7 @@
 
         /* Mobile Social Icons */
         .mobile-social-icons {
-            display: none;
+            display: flex;
             justify-content: center;
             gap: 1rem;
             margin-top: 2rem;
@@ -973,6 +978,25 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
 
+        /* Overlay for mobile menu */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .nav-links {
@@ -988,10 +1012,8 @@
             }
         }
 
-        @media (max-width: 768px) {
-
-            .nav-links,
-            .cta-group .btn-enroll {
+        @media (max-width: 992px) {
+            .nav-links {
                 display: none;
             }
 
@@ -999,6 +1021,16 @@
                 display: block;
             }
 
+            .cta-group .btn-enroll {
+                display: block;
+            }
+
+            .social-icons {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
             .slide-caption h1 {
                 font-size: 2.2rem;
             }
@@ -1029,10 +1061,6 @@
 
             .mobile-menu {
                 width: 300px;
-            }
-
-            .mobile-social-icons {
-                display: flex;
             }
         }
 
@@ -1210,14 +1238,17 @@
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
                 <button class="btn-enroll">Enroll Now</button>
-                <div class="hamburger"><i class="fas fa-bars"></i></div>
+                <button class="hamburger"><i class="fas fa-bars"></i></button>
             </div>
         </div>
     </header>
 
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+
     <!-- Mobile Menu -->
     <div class="mobile-menu">
-        <div class="close-menu"><i class="fas fa-times"></i></div>
+        <button class="close-menu"><i class="fas fa-times"></i></button>
         <nav class="mobile-links">
             <a href="index.html" class="active">Home</a>
             <a href="classes.html">Classes</a>
@@ -1595,23 +1626,21 @@
         const hamburger = document.querySelector('.hamburger');
         const mobileMenu = document.querySelector('.mobile-menu');
         const closeMenu = document.querySelector('.close-menu');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
 
-        hamburger.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
 
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+        hamburger.addEventListener('click', toggleMobileMenu);
+        closeMenu.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
 
         // Close menu when clicking on a link
         document.querySelectorAll('.mobile-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
+            link.addEventListener('click', toggleMobileMenu);
         });
 
         // Scroll to top button
@@ -1644,8 +1673,9 @@
                     });
 
                     // Close mobile menu if open
-                    mobileMenu.classList.remove('active');
-                    document.body.style.overflow = '';
+                    if (mobileMenu.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
 
                     // Update active nav link
                     document.querySelectorAll('.nav-links a, .mobile-links a').forEach(link => {
@@ -1676,14 +1706,6 @@
                     link.classList.add('active');
                 }
             });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!mobileMenu.contains(e.target) && e.target !== hamburger) {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            }
         });
 
         // Prevent horizontal scrolling

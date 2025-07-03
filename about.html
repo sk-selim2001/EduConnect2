@@ -10,6 +10,13 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Prevent horizontal scrolling */
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         /* Reset & base */
         * {
             margin: 0;
@@ -17,15 +24,10 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Open Sans', sans-serif;
             color: #333;
             line-height: 1.6;
-            overflow-x: hidden;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
 
@@ -52,439 +54,19 @@
             --glass: rgba(255, 255, 255, 0.9);
         }
 
-        /* About Page Specific Styles */
-        .about-hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
-            color: white;
-            padding: 140px 2rem 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            opacity: 0.2;
-        }
-
-        .about-hero h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-            animation: fadeInDown 1s ease;
-        }
-
-        .about-hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            position: relative;
-            z-index: 2;
-            animation: fadeInUp 1s ease;
-        }
-
-        .about-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-            border-radius: 2px;
-        }
-
-        .section-header p {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-            color: var(--neutral-dark);
-        }
-
-        .about-mission {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            margin-bottom: 5rem;
-            flex-wrap: wrap;
-        }
-
-        .mission-content {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .mission-image {
-            flex: 1;
-            min-width: 300px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            height: 400px;
-        }
-
-        .mission-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform var(--transition);
-        }
-
-        .mission-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .mission-content h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--neutral-dark);
-        }
-
-        .mission-content p {
-            margin-bottom: 1.5rem;
-            color: var(--neutral-dark);
-            line-height: 1.8;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 5rem;
-        }
-
-        .value-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: all var(--transition);
-            transform: translateY(20px);
+        /* Reveal on scroll */
+        .reveal {
             opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s var(--transition), transform 0.8s var(--transition);
         }
 
-        .value-card.visible {
-            transform: translateY(0);
+        .reveal.active {
             opacity: 1;
-        }
-
-        .value-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .value-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(142, 68, 173, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            transition: all var(--transition);
-        }
-
-        .value-card:hover .value-icon {
-            background: var(--primary);
-            transform: scale(1.1);
-        }
-
-        .value-icon i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            transition: color var(--transition);
-        }
-
-        .value-card:hover .value-icon i {
-            color: white;
-        }
-
-        .value-card h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--neutral-dark);
-        }
-
-        .value-card p {
-            color: var(--neutral-dark);
-            line-height: 1.7;
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto 5rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 4px;
-            background: var(--accent);
-            margin-left: -2px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-        }
-
-        .timeline-content {
-            width: 45%;
-            padding: 2rem;
-            background: white;
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-            position: relative;
-            transition: all var(--transition);
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .timeline-content::after {
-            content: '';
-            position: absolute;
-            top: 20px;
-            width: 20px;
-            height: 20px;
-            background: var(--accent);
-            transform: rotate(45deg);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content {
-            left: 0;
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            right: -10px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content {
-            left: 55%;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::after {
-            left: -10px;
-        }
-
-        .timeline-year {
-            position: absolute;
-            top: 15px;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--secondary);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-year {
-            right: -80px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-year {
-            left: -80px;
-        }
-
-        .timeline-content h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 5rem;
-        }
-
-        .team-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all var(--transition);
-            transform: translateY(20px);
-            opacity: 0;
-        }
-
-        .team-card.visible {
             transform: translateY(0);
-            opacity: 1;
         }
 
-        .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .team-image {
-            height: 300px;
-            overflow: hidden;
-        }
-
-        .team-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform var(--transition);
-        }
-
-        .team-card:hover .team-image img {
-            transform: scale(1.05);
-        }
-
-        .team-content {
-            padding: 1.8rem;
-            text-align: center;
-        }
-
-        .team-name {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-            color: var(--neutral-dark);
-        }
-
-        .team-role {
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .team-social {
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-
-        .team-social a {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--neutral-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition);
-            color: var(--neutral-dark);
-        }
-
-        .team-social a:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-            color: white;
-        }
-
-        .stats-container {
-            background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
-            border-radius: 20px;
-            padding: 4rem 2rem;
-            margin: 5rem 0;
-            text-align: center;
-            color: white;
-            box-shadow: var(--shadow);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .stat-item {
-            padding: 1.5rem;
-        }
-
-        .stat-value {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Common Styles from Index */
-        /* Header */
+        /* Enhanced Navbar */
         header {
             position: fixed;
             top: 0;
@@ -498,7 +80,7 @@
 
         .nav-container {
             max-width: 1280px;
-            margin: auto;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -620,6 +202,325 @@
             cursor: pointer;
             color: var(--primary);
             font-size: 1.5rem;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        /* About Hero */
+        .about-hero {
+            position: relative;
+            height: 60vh;
+            overflow: hidden;
+            width: 100%;
+            margin-top: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(46, 49, 65, 0.8), rgba(46, 49, 65, 0.8)),
+                url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+        }
+
+        .about-hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            color: white;
+        }
+
+        .about-hero h1 {
+            font-family: 'Poppins';
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1s ease-out;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .about-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-out;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            font-weight: 400;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 1.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-family: 'Poppins';
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: var(--neutral-dark);
+            line-height: 1.8;
+        }
+
+        /* Our Story */
+        .our-story {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-content {
+            padding: 2rem;
+        }
+
+        .story-content h3 {
+            font-family: 'Poppins';
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5rem;
+            color: var(--neutral-dark);
+            line-height: 1.8;
+        }
+
+        .story-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 400px;
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition);
+        }
+
+        .story-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Mission & Vision */
+        .mission-vision {
+            background: white;
+            border-radius: 20px;
+            padding: 4rem;
+            box-shadow: var(--shadow);
+            margin-top: 3rem;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .mv-item {
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all var(--transition);
+        }
+
+        .mv-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .mv-item.mission {
+            background: linear-gradient(135deg, rgba(142, 68, 173, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border-left: 4px solid var(--primary);
+        }
+
+        .mv-item.vision {
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.1) 0%, rgba(52, 211, 153, 0.1) 100%);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .mv-item h3 {
+            font-family: 'Poppins';
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .mv-item.vision h3 {
+            color: var(--secondary);
+        }
+
+        .mv-item p {
+            color: var(--neutral-dark);
+            line-height: 1.8;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+            text-align: center;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .member-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition);
+        }
+
+        .team-member:hover .member-image img {
+            transform: scale(1.05);
+        }
+
+        .member-info {
+            padding: 2rem;
+        }
+
+        .member-info h4 {
+            font-family: 'Poppins';
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-info p.role {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .member-info p.bio {
+            color: var(--neutral-dark);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .member-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--neutral-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            color: var(--neutral-dark);
+        }
+
+        .member-social a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            color: white;
+        }
+
+        /* Values */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+            text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .value-card i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            transition: all var(--transition);
+        }
+
+        .value-card:hover i {
+            transform: scale(1.1);
+            color: var(--secondary);
+        }
+
+        .value-card h4 {
+            font-family: 'Poppins';
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: var(--neutral-dark);
+            line-height: 1.7;
+            font-size: 0.95rem;
         }
 
         /* Footer */
@@ -629,6 +530,7 @@
             padding: 5rem 1.5rem 2rem;
             position: relative;
             overflow: hidden;
+            width: 100%;
         }
 
         footer::before {
@@ -677,9 +579,10 @@
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 2.5rem;
             max-width: 1280px;
-            margin: auto;
+            margin: 0 auto;
             position: relative;
             z-index: 1;
+            width: 100%;
         }
 
         .footer-col h4 {
@@ -793,11 +696,12 @@
             height: 100vh;
             background: white;
             z-index: 2000;
-            transition: left var(--transition);
+            transition: left 0.3s ease;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
             padding: 2rem 1.5rem;
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
         }
 
         .mobile-menu.active {
@@ -811,6 +715,8 @@
             cursor: pointer;
             color: var(--neutral-dark);
             transition: color var(--transition);
+            background: none;
+            border: none;
         }
 
         .mobile-menu .close-menu:hover {
@@ -842,43 +748,68 @@
             width: 100%;
         }
 
-        /* Responsive Design */
+        /* Mobile Social Icons */
+        .mobile-social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .mobile-social-icons a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--neutral-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+            color: var(--neutral-dark);
+            font-size: 1.2rem;
+        }
+
+        .mobile-social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Overlay for mobile menu */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive */
         @media (max-width: 1024px) {
             .nav-links {
                 gap: 1rem;
             }
 
             .about-hero h1 {
-                font-size: 3rem;
-            }
-
-            .timeline::before {
-                left: 30px;
-            }
-
-            .timeline-item:nth-child(even) .timeline-content,
-            .timeline-item:nth-child(odd) .timeline-content {
-                width: calc(100% - 80px);
-                left: 80px;
-            }
-
-            .timeline-item:nth-child(odd) .timeline-content::after,
-            .timeline-item:nth-child(even) .timeline-content::after {
-                left: -10px;
-                right: auto;
-            }
-
-            .timeline-item:nth-child(odd) .timeline-year,
-            .timeline-item:nth-child(even) .timeline-year {
-                left: 0;
-                right: auto;
+                font-size: 2.8rem;
             }
         }
 
-        @media (max-width: 768px) {
-
-            .nav-links,
-            .cta-group .btn-enroll {
+        @media (max-width: 992px) {
+            .nav-links {
                 display: none;
             }
 
@@ -886,24 +817,90 @@
                 display: block;
             }
 
-            .about-hero {
-                padding: 120px 1.5rem 60px;
+            .cta-group .btn-enroll {
+                display: block;
             }
 
-            .about-hero h1 {
-                font-size: 2.5rem;
+            .social-icons {
+                display: none;
             }
 
-            .about-mission {
-                flex-direction: column;
+            .our-story {
+                grid-template-columns: 1fr;
             }
 
-            .mission-image {
+            .story-image {
                 order: -1;
             }
 
-            .section-header h2 {
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-hero p {
+                font-size: 1.1rem;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            section h2 {
                 font-size: 2rem;
+            }
+
+            .mission-vision {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.6rem;
+            }
+
+            .logo-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .about-hero {
+                height: 50vh;
+                margin-top: 70px;
+            }
+
+            .about-hero-content {
+                padding: 1rem;
+            }
+
+            .about-hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .about-hero p {
+                font-size: 1rem;
+            }
+
+            .story-content {
+                padding: 1rem;
+            }
+
+            .story-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .member-image {
+                height: 250px;
             }
         }
 
@@ -913,25 +910,43 @@
             }
 
             .about-hero h1 {
-                font-size: 2rem;
+                font-size: 1.7rem;
             }
 
             .about-hero p {
-                font-size: 1.1rem;
+                font-size: 0.95rem;
             }
 
-            .mission-content h3 {
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .mobile-menu {
+                width: 280px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+
+            .about-hero h1 {
                 font-size: 1.5rem;
             }
 
-            .timeline-item:nth-child(even) .timeline-content,
-            .timeline-item:nth-child(odd) .timeline-content {
-                width: calc(100% - 50px);
-                left: 50px;
-            }
-
-            .timeline-year {
-                font-size: 1.5rem;
+            section h2 {
+                font-size: 1.6rem;
             }
         }
     </style>
@@ -941,7 +956,7 @@
 
     <!-- Header -->
     <header>
-        <div class="nav-container">
+        <div class="nav-container reveal">
             <div class="logo">
                 <div class="logo-icon">
                     <i class="fas fa-graduation-cap"></i>
@@ -963,227 +978,210 @@
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
                 <button class="btn-enroll">Enroll Now</button>
-                <div class="hamburger"><i class="fas fa-bars"></i></div>
+                <button class="hamburger"><i class="fas fa-bars"></i></button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="about-hero">
-        <h1>About EduVantage Academy</h1>
-        <p>Empowering students with innovative learning experiences since 2010</p>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <button class="close-menu"><i class="fas fa-times"></i></button>
+        <nav class="mobile-links">
+            <a href="index.html">Home</a>
+            <a href="classes.html">Classes</a>
+            <a href="guidance.html">Guidance</a>
+            <a href="announcement.html">Announcements</a>
+            <a href="about.html" class="active">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <button class="btn-enroll">Enroll Now</button>
+        <div class="mobile-social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+
+    <!-- About Hero -->
+    <div class="about-hero">
+        <div class="about-hero-content reveal">
+            <h1>About EduVantage Academy</h1>
+            <p>Empowering students with world-class education and personalized guidance to unlock their full potential
+            </p>
+        </div>
+    </div>
+
+    <!-- Our Story -->
+    <section class="reveal" id="our-story">
+        <h2>Our Story</h2>
+        <p class="section-subtitle">From humble beginnings to becoming a leading educational institution, our journey
+            has been guided by a passion for transformative learning.</p>
+
+        <div class="our-story">
+            <div class="story-content">
+                <h3>Founding & Growth</h3>
+                <p>EduVantage Academy was founded in 2010 by a group of passionate educators who recognized the need for
+                    personalized, high-quality education in India's competitive academic landscape. What began as a
+                    small tutoring center with just 5 students has grown into a premier educational institution serving
+                    thousands of learners across multiple cities.</p>
+                <p>Our growth has been fueled by our commitment to student success, innovative teaching methodologies,
+                    and our ability to adapt to the evolving educational needs of the 21st century. We've consistently
+                    expanded our offerings while maintaining the personalized attention that set us apart from the
+                    beginning.</p>
+                <p>Today, EduVantage Academy stands as a testament to what's possible when education is
+                    student-centered, future-focused, and delivered by dedicated professionals who truly care about
+                    their students' success.</p>
+            </div>
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Students learning at EduVantage">
+            </div>
+        </div>
+
+        <div class="mission-vision reveal">
+            <div class="mv-grid">
+                <div class="mv-item mission">
+                    <h3>Our Mission</h3>
+                    <p>To provide exceptional, personalized education that empowers students to achieve academic
+                        excellence, develop critical thinking skills, and cultivate a lifelong love for learning. We
+                        strive to create an inclusive environment where every student can thrive and reach their full
+                        potential.</p>
+                </div>
+                <div class="mv-item vision">
+                    <h3>Our Vision</h3>
+                    <p>To be India's most trusted educational partner, transforming lives through innovative learning
+                        experiences that prepare students not just for exams, but for life. We envision a future where
+                        every EduVantage graduate is equipped with the knowledge, skills, and confidence to succeed in
+                        an ever-changing world.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- About Content -->
-    <section class="about-container">
-        <div class="section-header">
-            <h2>Our Mission & Vision</h2>
-            <p>We are committed to transforming education through innovative approaches and personalized learning
-                experiences</p>
-        </div>
+    <!-- Our Team -->
+    <section class="reveal" id="our-team">
+        <h2>Meet Our Team</h2>
+        <p class="section-subtitle">Our dedicated team of educators and administrators bring decades of combined
+            experience and a shared passion for student success.</p>
 
-        <div class="about-mission">
-            <div class="mission-content">
-                <h3>Shaping Future Leaders Through Education</h3>
-                <p>Founded in 2010, EduVantage Academy has been at the forefront of educational innovation in India. Our
-                    mission is to provide high-quality, accessible education that prepares students for success in an
-                    ever-changing world.</p>
-                <p>We believe in a holistic approach to learning that combines academic excellence with practical skills
-                    development. Our dedicated faculty, cutting-edge curriculum, and supportive learning environment
-                    create the perfect foundation for student achievement.</p>
-                <p>At EduVantage, we're not just teaching subjects - we're nurturing critical thinkers, problem solvers,
-                    and lifelong learners who will shape the future of our communities and our nation.</p>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                        alt="Dr. Rajesh Kumar">
+                </div>
+                <div class="member-info">
+                    <h4>Dr. Rajesh Kumar</h4>
+                    <p class="role">Founder & Director</p>
+                    <p class="bio">PhD in Education with 25+ years of teaching experience. Passionate about innovative
+                        pedagogy and student-centered learning.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="mission-image">
-                <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                    alt="EduVantage Academy">
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                        alt="Priya Sharma">
+                </div>
+                <div class="member-info">
+                    <h4>Priya Sharma</h4>
+                    <p class="role">Academic Head</p>
+                    <p class="bio">M.Ed with 15 years experience in curriculum development. Specializes in creating
+                        engaging learning experiences.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                        alt="Amit Patel">
+                </div>
+                <div class="member-info">
+                    <h4>Amit Patel</h4>
+                    <p class="role">Head of Science</p>
+                    <p class="bio">M.Sc in Physics with 12 years teaching experience. Known for making complex concepts
+                        accessible and engaging.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80"
+                        alt="Neha Gupta">
+                </div>
+                <div class="member-info">
+                    <h4>Neha Gupta</h4>
+                    <p class="role">Head of Mathematics</p>
+                    <p class="bio">M.Sc in Mathematics with 10 years experience. Specializes in developing
+                        problem-solving skills and logical thinking.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="section-header">
-            <h2>Our Core Values</h2>
-            <p>These principles guide everything we do at EduVantage Academy</p>
-        </div>
+    <!-- Our Values -->
+    <section class="reveal" id="our-values">
+        <h2>Our Core Values</h2>
+        <p class="section-subtitle">These principles guide everything we do at EduVantage Academy, from curriculum
+            design to student interactions.</p>
 
         <div class="values-grid">
             <div class="value-card">
-                <div class="value-icon">
-                    <i class="fas fa-lightbulb"></i>
-                </div>
-                <h3>Innovation</h3>
-                <p>We continuously explore new teaching methodologies and technologies to enhance learning outcomes and
-                    prepare students for the future.</p>
+                <i class="fas fa-user-graduate"></i>
+                <h4>Student-Centered</h4>
+                <p>Every decision we make prioritizes student learning and growth. We adapt to individual needs and
+                    learning styles.</p>
             </div>
             <div class="value-card">
-                <div class="value-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3>Community</h3>
-                <p>We foster a supportive environment where students, teachers, and parents collaborate to create
-                    meaningful educational experiences.</p>
+                <i class="fas fa-lightbulb"></i>
+                <h4>Innovation</h4>
+                <p>We continually evolve our teaching methods and curriculum to incorporate the latest educational
+                    research and technology.</p>
             </div>
             <div class="value-card">
-                <div class="value-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <h3>Excellence</h3>
-                <p>We maintain the highest standards of academic rigor while nurturing each student's unique talents and
-                    abilities.</p>
+                <i class="fas fa-hand-holding-heart"></i>
+                <h4>Integrity</h4>
+                <p>We maintain the highest ethical standards in all our interactions with students, parents, and the
+                    community.</p>
             </div>
             <div class="value-card">
-                <div class="value-icon">
-                    <i class="fas fa-hands-helping"></i>
-                </div>
-                <h3>Empathy</h3>
-                <p>We cultivate emotional intelligence and compassion, helping students develop into caring and
-                    responsible global citizens.</p>
+                <i class="fas fa-chart-line"></i>
+                <h4>Excellence</h4>
+                <p>We strive for the highest standards in teaching, curriculum, and student outcomes, never settling for
+                    mediocrity.</p>
             </div>
             <div class="value-card">
-                <div class="value-icon">
-                    <i class="fas fa-seedling"></i>
-                </div>
-                <h3>Growth</h3>
-                <p>We believe in continuous improvement and lifelong learning for both students and educators.</p>
+                <i class="fas fa-users"></i>
+                <h4>Community</h4>
+                <p>We foster a supportive learning environment where students, teachers, and parents collaborate for
+                    success.</p>
             </div>
             <div class="value-card">
-                <div class="value-icon">
-                    <i class="fas fa-globe-asia"></i>
-                </div>
-                <h3>Global Perspective</h3>
-                <p>We prepare students to thrive in an interconnected world with diverse cultural understanding.</p>
-            </div>
-        </div>
-
-        <div class="section-header">
-            <h2>Our Journey</h2>
-            <p>From humble beginnings to becoming a leader in education</p>
-        </div>
-
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-year">2010</div>
-                <div class="timeline-content">
-                    <h3>Founding of EduVantage</h3>
-                    <p>Established with just 3 classrooms and 5 teachers in Mumbai, focusing on personalized tutoring
-                        for secondary students.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2013</div>
-                <div class="timeline-content">
-                    <h3>Expansion to New Cities</h3>
-                    <p>Opened centers in Delhi and Bangalore, introducing specialized test preparation programs for
-                        competitive exams.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2016</div>
-                <div class="timeline-content">
-                    <h3>Digital Learning Platform</h3>
-                    <p>Launched our online learning portal, expanding access to students across India with hybrid
-                        learning options.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2019</div>
-                <div class="timeline-content">
-                    <h3>Industry Partnerships</h3>
-                    <p>Established collaborations with leading tech companies to develop career-focused programs and
-                        internship opportunities.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2022</div>
-                <div class="timeline-content">
-                    <h3>National Recognition</h3>
-                    <p>Awarded "Best Emerging Education Institute" by the National Education Excellence Awards for our
-                        innovative curriculum.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-year">2025</div>
-                <div class="timeline-content">
-                    <h3>Global Outreach</h3>
-                    <p>Launched international programs with partner institutions in Singapore, UK, and Canada, offering
-                        global learning experiences.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-header">
-            <h2>Meet Our Leadership</h2>
-            <p>Experienced educators passionate about student success</p>
-        </div>
-
-        <div class="team-grid">
-            <div class="team-card">
-                <div class="team-image">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Dr. Ananya Sharma">
-                </div>
-                <div class="team-content">
-                    <h3 class="team-name">Dr. Ananya Sharma</h3>
-                    <div class="team-role">Founder & Director</div>
-                    <p>PhD in Education, 15+ years experience</p>
-                    <div class="team-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-image">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Rajiv Mehta">
-                </div>
-                <div class="team-content">
-                    <h3 class="team-name">Rajiv Mehta</h3>
-                    <div class="team-role">Academic Director</div>
-                    <p>M.Ed, Curriculum Development Specialist</p>
-                    <div class="team-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="team-card">
-                <div class="team-image">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Priya Desai">
-                </div>
-                <div class="team-content">
-                    <h3 class="team-name">Priya Desai</h3>
-                    <div class="team-role">Head of Digital Learning</div>
-                    <p>Tech Integration Expert, Former EdTech Executive</p>
-                    <div class="team-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="stats-container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-value">15,000+</span>
-                    <span class="stat-label">Students Enrolled</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">200+</span>
-                    <span class="stat-label">Expert Educators</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">98%</span>
-                    <span class="stat-label">Satisfaction Rate</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-value">25</span>
-                    <span class="stat-label">Cities Across India</span>
-                </div>
+                <i class="fas fa-seedling"></i>
+                <h4>Growth Mindset</h4>
+                <p>We believe abilities can be developed through dedication and hard work, and we instill this belief in
+                    our students.</p>
             </div>
         </div>
     </section>
@@ -1205,7 +1203,6 @@
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Classes</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Counselling</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Announcements</a></li>
@@ -1226,8 +1223,8 @@
             <div class="footer-col">
                 <h4>Contact Us</h4>
                 <ul>
-                    <li><i class="fas fa-map-marker-alt"></i> 123 Innovation Drive, San Francisco, CA</li>
-                    <li><i class="fas fa-phone"></i> (415) 555-0123</li>
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Education Street, Mumbai, Maharashtra 400001</li>
+                    <li><i class="fas fa-phone"></i> +91 98765 43210</li>
                     <li><i class="fas fa-envelope"></i> info@eduvantage.edu</li>
                     <li><i class="fas fa-clock"></i> Mon-Fri: 8am-8pm, Sat: 9am-5pm</li>
                     <li><i class="fas fa-globe"></i> www.eduvantage.edu</li>
@@ -1247,35 +1244,35 @@
     </div>
 
     <script>
-        // Card animation on scroll
-        const valueCards = document.querySelectorAll('.value-card');
-        const teamCards = document.querySelectorAll('.team-card');
-
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
         const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
+            entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('active'));
+        }, { threshold: 0.2 });
+        reveals.forEach(r => observer.observe(r));
 
-        valueCards.forEach(card => observer.observe(card));
-        teamCards.forEach(card => observer.observe(card));
-
-        // Mobile menu functionality
+        // Mobile menu toggle
         const hamburger = document.querySelector('.hamburger');
         const mobileMenu = document.querySelector('.mobile-menu');
         const closeMenu = document.querySelector('.close-menu');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
 
-        hamburger.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMobileMenu);
+        closeMenu.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.mobile-links a').forEach(link => {
+            link.addEventListener('click', toggleMobileMenu);
         });
 
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
-
-        // Scroll to top functionality
+        // Scroll to top button
         const scrollTopBtn = document.getElementById('scrollTop');
 
         window.addEventListener('scroll', () => {
@@ -1290,18 +1287,60 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Timeline animation
-        const timelineItems = document.querySelectorAll('.timeline-item');
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
 
-        const timelineObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+
+                    // Update active nav link
+                    document.querySelectorAll('.nav-links a, .mobile-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
                 }
             });
-        }, { threshold: 0.2 });
+        });
 
-        timelineItems.forEach(item => timelineObserver.observe(item));
+        // Set active nav link based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a, .mobile-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}` ||
+                    (current === '' && link.getAttribute('href') === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Prevent horizontal scrolling
+        window.addEventListener('load', function () {
+            document.body.style.overflowX = 'hidden';
+        });
     </script>
 </body>
 

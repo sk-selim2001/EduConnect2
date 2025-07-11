@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduVantage Academy | Contact Us</title>
+    <title>EduVantage Academy | Events Gallery</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* All styles from index.html */
         /* Prevent horizontal scrolling */
         html,
         body {
@@ -66,407 +67,6 @@
             transform: translateY(0);
         }
 
-        /* Contact Page Specific Styles */
-        .contact-hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #3b82f6 100%);
-            color: white;
-            padding: 140px 2rem 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            margin-top: 80px;
-            /* Account for fixed header */
-        }
-
-        .contact-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            opacity: 0.2;
-        }
-
-        .contact-hero h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
-            margin-bottom: 4rem;
-        }
-
-        .contact-info {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            transition: all var(--transition);
-        }
-
-        .contact-info::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(142, 68, 173, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
-            z-index: -1;
-        }
-
-        .contact-info:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .contact-info h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .contact-info h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--secondary);
-            border-radius: 2px;
-        }
-
-        .contact-details {
-            margin-bottom: 2rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(142, 68, 173, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .contact-icon i {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        .contact-text h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-            color: var(--neutral-dark);
-        }
-
-        .contact-text p {
-            color: var(--neutral-dark);
-            line-height: 1.6;
-        }
-
-        .contact-hours {
-            margin-top: 2rem;
-        }
-
-        .hours-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .hours-item {
-            background: rgba(142, 68, 173, 0.05);
-            padding: 0.8rem;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .hours-item .day {
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .hours-item .time {
-            color: var(--neutral-dark);
-        }
-
-        .contact-form-container {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: var(--shadow);
-            transition: all var(--transition);
-        }
-
-        .contact-form-container:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .contact-form-container h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .contact-form-container h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--secondary);
-            border-radius: 2px;
-        }
-
-        .contact-form p {
-            margin-bottom: 1.5rem;
-            color: var(--neutral-dark);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--neutral-dark);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1.2rem;
-            border: 1px solid var(--neutral-muted);
-            border-radius: 10px;
-            font-family: 'Open Sans', sans-serif;
-            font-size: 1rem;
-            transition: all var(--transition);
-        }
-
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.2);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .btn-submit {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-            color: white;
-            padding: 0.9rem 2.5rem;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all var(--transition);
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
-        }
-
-        .map-container {
-            margin-top: 4rem;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            height: 500px;
-        }
-
-        .map-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .faq-section {
-            margin-top: 6rem;
-        }
-
-        .faq-section h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary);
-            position: relative;
-        }
-
-        .faq-section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-            border-radius: 2px;
-        }
-
-        .faq-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            padding: 0 1.5rem;
-        }
-
-        .faq-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1rem;
-            box-shadow: var(--shadow);
-            transition: all var(--transition);
-            cursor: pointer;
-        }
-
-        .faq-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .faq-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .faq-question {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        .faq-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(142, 68, 173, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: all var(--transition);
-        }
-
-        .faq-icon i {
-            color: var(--primary);
-            transition: all var(--transition);
-        }
-
-        .faq-card.active .faq-icon {
-            background: var(--primary);
-        }
-
-        .faq-card.active .faq-icon i {
-            color: white;
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: all var(--transition);
-            color: var(--neutral-dark);
-            line-height: 1.7;
-        }
-
-        .faq-card.active .faq-answer {
-            max-height: 500px;
-            margin-top: 1.5rem;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         /* Enhanced Navbar */
         header {
             position: fixed;
@@ -474,6 +74,7 @@
             width: 100%;
             background: var(--glass);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.7);
@@ -606,6 +207,194 @@
             background: none;
             border: none;
             padding: 0.5rem;
+        }
+
+        /* Hero section for events page */
+        .events-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .events-hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .events-hero h1 {
+            font-family: 'Poppins';
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .events-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Gallery section */
+        .gallery-section {
+            padding: 6rem 1.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .gallery-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-family: 'Poppins';
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .gallery-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.1rem;
+            color: var(--neutral-dark);
+            line-height: 1.8;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all var(--transition);
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            color: white;
+            padding: 1.5rem 1rem 1rem;
+            transform: translateY(100%);
+            transition: transform var(--transition);
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-caption h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .gallery-caption p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Event categories */
+        .event-categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            background: white;
+            border: 1px solid var(--neutral-muted);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .category-btn:hover,
+        .category-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 1.5rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-family: 'Poppins';
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
         }
 
         /* Footer */
@@ -888,8 +677,8 @@
                 gap: 1rem;
             }
 
-            .contact-grid {
-                gap: 2rem;
+            .events-hero h1 {
+                font-size: 2.8rem;
             }
         }
 
@@ -912,24 +701,29 @@
         }
 
         @media (max-width: 768px) {
-            .contact-hero {
-                padding: 120px 1.5rem 60px;
+            .events-hero {
+                height: 50vh;
+                margin-top: 70px;
             }
 
-            .contact-hero h1 {
-                font-size: 2.5rem;
+            .events-hero h1 {
+                font-size: 2.2rem;
             }
 
-            .contact-grid {
-                grid-template-columns: 1fr;
+            .events-hero p {
+                font-size: 1.1rem;
             }
 
-            .map-container {
-                height: 400px;
+            .gallery-section {
+                padding: 4rem 1rem;
             }
 
-            .hours-grid {
-                grid-template-columns: 1fr;
+            .gallery-section h2 {
+                font-size: 2rem;
+            }
+
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
         }
 
@@ -947,25 +741,24 @@
                 height: 36px;
             }
 
-            .contact-hero h1 {
-                font-size: 2rem;
+            .events-hero {
+                height: 45vh;
             }
 
-            .contact-hero p {
-                font-size: 1.1rem;
+            .events-hero h1 {
+                font-size: 1.9rem;
             }
 
-            .contact-info,
-            .contact-form-container {
-                padding: 1.8rem;
+            .events-hero p {
+                font-size: 1rem;
             }
 
-            .map-container {
-                height: 300px;
+            .gallery-container {
+                grid-template-columns: 1fr;
             }
 
-            .faq-section h2 {
-                font-size: 2rem;
+            .footer-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -974,12 +767,12 @@
                 font-size: 1.5rem;
             }
 
-            .contact-hero h1 {
-                font-size: 1.8rem;
+            .events-hero h1 {
+                font-size: 1.7rem;
             }
 
-            .faq-grid {
-                grid-template-columns: 1fr;
+            .events-hero p {
+                font-size: 0.95rem;
             }
         }
 
@@ -994,8 +787,16 @@
                 font-size: 0.9rem;
             }
 
-            .contact-hero h1 {
-                font-size: 1.6rem;
+            .events-hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .gallery-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
             }
 
             .mobile-menu {
@@ -1020,9 +821,9 @@
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
                 <a href="classes.html">Classes</a>
-                <a href="events.html">Events</a>
+                <a href="events.html" class="active">Events</a>
                 <a href="results.html">Results</a>
-                <a href="contact.html" class="active">Contact</a>
+                <a href="contact.html">Contact</a>
             </nav>
             <div class="cta-group">
                 <div class="social-icons">
@@ -1030,7 +831,7 @@
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
-                <button class="btn-enroll">Ask a query</button>
+                <button class="btn-enroll">Enroll Now</button>
                 <button class="hamburger"><i class="fas fa-bars"></i></button>
             </div>
         </div>
@@ -1045,10 +846,10 @@
         <nav class="mobile-links">
             <a href="index.html">Home</a>
             <a href="classes.html">Classes</a>
-            <a href="guidance.html">Guidance</a>
-            <a href="announcement.html">Announcements</a>
+            <a href="events.html" class="active">Events</a>
+            <a href="results.html">Results</a>
             <a href="about.html">About</a>
-            <a href="contact.html" class="active">Contact</a>
+            <a href="contact.html">Contact</a>
         </nav>
         <button class="btn-enroll">Enroll Now</button>
         <div class="mobile-social-icons">
@@ -1059,186 +860,158 @@
         </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="contact-hero">
-        <h1>Get In Touch With Us</h1>
-        <p>We're here to answer any questions you may have about our programs, enrollment, or anything else</p>
+    <!-- Events Hero Section -->
+    <section class="events-hero">
+        <div class="events-hero-content reveal">
+            <h1>Our Memorable Events</h1>
+            <p>Explore our gallery of educational trips, picnics, and special events that make learning fun and
+                memorable</p>
+        </div>
     </section>
 
-    <!-- Contact Content -->
-    <section class="contact-container">
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h2>Contact Information</h2>
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <h2 class="reveal">Events Gallery</h2>
+        <p class="section-subtitle reveal">From educational tours to fun picnics, we organize various events to enhance
+            learning and build strong student-teacher relationships.</p>
 
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Our Headquarters</h3>
-                            <p>123 Innovation Drive, San Francisco, CA 94107, United States</p>
-                        </div>
-                    </div>
+        <div class="event-categories reveal">
+            <button class="category-btn active">All Events</button>
+            <button class="category-btn">Picnics</button>
+            <button class="category-btn">Educational Tours</button>
+            <button class="category-btn">Annual Day</button>
+            <button class="category-btn">Workshops</button>
+        </div>
 
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Phone & WhatsApp</h3>
-                            <p>+1 (415) 555-0123<br>+1 (415) 555-0199 (WhatsApp)</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h3>Email Address</h3>
-                            <p>info@eduvantage.edu<br>support@eduvantage.edu</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-hours">
-                    <h3>Working Hours</h3>
-                    <div class="hours-grid">
-                        <div class="hours-item">
-                            <div class="day">Monday - Friday</div>
-                            <div class="time">8:00 AM - 8:00 PM</div>
-                        </div>
-                        <div class="hours-item">
-                            <div class="day">Saturday</div>
-                            <div class="time">9:00 AM - 5:00 PM</div>
-                        </div>
-                        <div class="hours-item">
-                            <div class="day">Sunday</div>
-                            <div class="time">10:00 AM - 4:00 PM</div>
-                        </div>
-                        <div class="hours-item">
-                            <div class="day">Holidays</div>
-                            <div class="time">10:00 AM - 2:00 PM</div>
-                        </div>
-                    </div>
+        <div class="gallery-container">
+            <!-- Picnic Event 1 -->
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1549488344-89d3b9349d26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Annual picnic at Adventure Park">
+                <div class="gallery-caption">
+                    <h3>Annual Picnic 2023</h3>
+                    <p>Students and teachers enjoying a day out at Adventure Park, Mumbai</p>
                 </div>
             </div>
 
-            <div class="contact-form-container">
-                <h2>Send Us a Message</h2>
-                <p>Have questions about our programs or enrollment process? Fill out the form below and our team will
-                    get back to you within 24 hours.</p>
+            <!-- Educational Tour 1 -->
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Science museum visit">
+                <div class="gallery-caption">
+                    <h3>Science Museum Visit</h3>
+                    <p>Grade 10 students exploring interactive exhibits at the National Science Centre</p>
+                </div>
+            </div>
 
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
-                    </div>
+            <!-- Workshop Event -->
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Robotics workshop">
+                <div class="gallery-caption">
+                    <h3>Robotics Workshop</h3>
+                    <p>Students building their first robots during our annual tech workshop</p>
+                </div>
+            </div>
 
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-                    </div>
+            <!-- Picnic Event 2 -->
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Beach picnic">
+                <div class="gallery-caption">
+                    <h3>Beach Picnic</h3>
+                    <p>Fun team-building activities at Juhu Beach with tutors and students</p>
+                </div>
+            </div>
 
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
-                    </div>
+            <!-- Annual Day -->
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Annual day performance">
+                <div class="gallery-caption">
+                    <h3>Annual Day 2023</h3>
+                    <p>Students showcasing their talents during our cultural program</p>
+                </div>
+            </div>
 
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <select id="subject" class="form-control" required>
-                            <option value="">Select a subject</option>
-                            <option value="admission">Admission Inquiry</option>
-                            <option value="programs">Program Information</option>
-                            <option value="payment">Payment & Fees</option>
-                            <option value="technical">Technical Support</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
+            <!-- Educational Tour 2 -->
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Historical site visit">
+                <div class="gallery-caption">
+                    <h3>History Field Trip</h3>
+                    <p>Exploring ancient monuments as part of our history curriculum</p>
+                </div>
+            </div>
 
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" class="form-control" placeholder="Type your message here..."
-                            required></textarea>
-                    </div>
+            <!-- Picnic Event 3 -->
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Nature walk">
+                <div class="gallery-caption">
+                    <h3>Nature Walk & Picnic</h3>
+                    <p>Biology students studying local flora during our nature excursion</p>
+                </div>
+            </div>
 
-                    <button type="submit" class="btn-submit">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-                </form>
+            <!-- Workshop Event 2 -->
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                    alt="Creative writing workshop">
+                <div class="gallery-caption">
+                    <h3>Creative Writing Workshop</h3>
+                    <p>Students participating in our storytelling and poetry session</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="map-container">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.691369997118!2d-122.3996779237689!3d37.78351407194117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085807f0a7a5b73%3A0x7c9b5c5c6a6b5f1f!2s123%20Innovation%20Dr%2C%20San%20Francisco%2C%20CA%2094107%2C%20USA!5e0!3m2!1sen!2sin!4v1692636172197!5m2!1sen!2sin"
-                allowfullscreen="" loading="lazy"></iframe>
-        </div>
+    <!-- Upcoming Events Section -->
+    <section class="reveal">
+        <h2>Upcoming Events</h2>
+        <p class="section-subtitle">Mark your calendars for these exciting upcoming events we have planned for our
+            students</p>
 
-        <div class="faq-section">
-            <h2>Frequently Asked Questions</h2>
-
-            <div class="faq-grid">
-                <div class="faq-card">
-                    <div class="faq-header">
-                        <div class="faq-question">How do I enroll in a course at EduVantage?</div>
-                        <div class="faq-icon">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+        <div class="snapshot">
+            <div class="card-flip">
+                <div class="card-inner">
+                    <div class="card-front"
+                        style="background-image: url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                        <h3>Summer Camp 2024</h3>
                     </div>
-                    <div class="faq-answer">
-                        <p>Enrolling is simple! Visit our Classes page, select your desired course, and click the
-                            "Enroll Now" button. You'll be guided through our secure enrollment process where you can
-                            choose your batch timings and complete the payment. If you need assistance, our admissions
-                            team is available via chat, email, or phone.</p>
+                    <div class="card-back">
+                        <i class="fas fa-campground"></i>
+                        <h4>Summer Camp</h4>
+                        <p>Join us for a 2-week adventure camp combining outdoor activities with fun learning
+                            experiences. June 10-24, 2024 at Lonavala.</p>
                     </div>
                 </div>
-
-                <div class="faq-card">
-                    <div class="faq-header">
-                        <div class="faq-question">What payment options are available?</div>
-                        <div class="faq-icon">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+            </div>
+            <div class="card-flip">
+                <div class="card-inner">
+                    <div class="card-front"
+                        style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                        <h3>Career Guidance Workshop</h3>
                     </div>
-                    <div class="faq-answer">
-                        <p>We offer multiple payment options for your convenience. You can pay online via credit/debit
-                            cards, net banking, UPI, or digital wallets. We also support installment plans for most
-                            courses. For offline payments, you can visit any of our centers and pay via cash, cheque, or
-                            demand draft.</p>
-                    </div>
-                </div>
-
-                <div class="faq-card">
-                    <div class="faq-header">
-                        <div class="faq-question">Can I attend demo classes before enrolling?</div>
-                        <div class="faq-icon">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolutely! We encourage prospective students to attend our free demo classes. You can
-                            schedule a demo session through our website or by contacting our support team. Demos are
-                            available both online and at our physical centers. This gives you a chance to experience our
-                            teaching methodology before making a commitment.</p>
+                    <div class="card-back">
+                        <i class="fas fa-user-tie"></i>
+                        <h4>Career Workshop</h4>
+                        <p>Industry experts will guide students on career options and skill development. July 15, 2024
+                            at our main campus.</p>
                     </div>
                 </div>
-
-                <div class="faq-card">
-                    <div class="faq-header">
-                        <div class="faq-question">What if I miss a class? Are recordings available?</div>
-                        <div class="faq-icon">
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
+            </div>
+            <div class="card-flip">
+                <div class="card-inner">
+                    <div class="card-front"
+                        style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80')">
+                        <h3>Science Fair</h3>
                     </div>
-                    <div class="faq-answer">
-                        <p>Yes, we understand students may occasionally miss classes. For all our courses, we provide
-                            recorded sessions that are accessible through our learning portal for 30 days. Additionally,
-                            you can schedule a one-on-one session with your instructor to cover missed content. We
-                            recommend attending live classes whenever possible for the best learning experience.</p>
+                    <div class="card-back">
+                        <i class="fas fa-flask"></i>
+                        <h4>Annual Science Fair</h4>
+                        <p>Students showcase innovative projects at our inter-school science competition. August 20,
+                            2024.</p>
                     </div>
                 </div>
             </div>
@@ -1246,7 +1019,7 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>EduVantage Academy</h4>
@@ -1262,12 +1035,11 @@
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                    <li><a href="classes.html"><i class="fas fa-chevron-right"></i> Classes</a></li>
-                    <li><a href="guidance.html"><i class="fas fa-chevron-right"></i> Guidance</a></li>
-                    <li><a href="announcement.html"><i class="fas fa-chevron-right"></i> Announcements</a></li>
-                    <li><a href="about.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                    <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Classes</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Counselling</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Announcements</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -1310,38 +1082,6 @@
             entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('active'));
         }, { threshold: 0.2 });
         reveals.forEach(r => observer.observe(r));
-
-        // FAQ toggle functionality
-        const faqCards = document.querySelectorAll('.faq-card');
-        faqCards.forEach(card => {
-            const header = card.querySelector('.faq-header');
-            header.addEventListener('click', () => {
-                card.classList.toggle('active');
-            });
-        });
-
-        // Form submission
-        const contactForm = document.querySelector('.contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-
-            // Simple validation
-            if (name && email && subject && message) {
-                // Show success message
-                alert(`Thank you, ${name}! Your message has been sent successfully. We'll contact you at ${email} shortly.`);
-
-                // Reset form
-                contactForm.reset();
-            } else {
-                alert('Please fill in all required fields.');
-            }
-        });
 
         // Mobile menu toggle
         const hamburger = document.querySelector('.hamburger');
@@ -1397,6 +1137,12 @@
                     if (mobileMenu.classList.contains('active')) {
                         toggleMobileMenu();
                     }
+
+                    // Update active nav link
+                    document.querySelectorAll('.nav-links a, .mobile-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
                 }
             });
         });
@@ -1420,6 +1166,16 @@
                     (current === '' && link.getAttribute('href') === 'index.html')) {
                     link.classList.add('active');
                 }
+            });
+        });
+
+        // Event category filtering
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // In a real implementation, you would filter the gallery items here
             });
         });
 
